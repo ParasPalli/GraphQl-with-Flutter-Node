@@ -1,0 +1,16 @@
+# Node Modules
+node_modules/
+
+# Environment files
+.env
+
+# Logs
+logs/
+*.log
+
+# OS-specific files
+.DS_Store
+
+# Dependency directories
+npm-debug.log*
+yarn-error.log*
