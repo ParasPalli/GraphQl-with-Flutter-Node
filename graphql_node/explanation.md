@@ -1,0 +1,4 @@
+- If you fetch something from GraphQL server you do **Query**
+- If you send something to the GraphQL server then you do **Mutation**
+- You will write all the logic in the **resolvers**
+- We can write logic for the type Defination as well in the **resolvers**
