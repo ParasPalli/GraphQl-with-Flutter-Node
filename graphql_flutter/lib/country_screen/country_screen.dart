@@ -62,6 +62,7 @@ class _HomeScreenState extends State<CountryScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
+        iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.white),
         title: Text(
           "Countries",
           style: Theme.of(context).textTheme.titleLarge?.copyWith(

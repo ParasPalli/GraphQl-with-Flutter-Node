@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/country_screen/country_screen.dart';
+import 'package:graphql_flutter/todo_screen/todo_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -70,7 +71,9 @@ class HomeScree extends StatelessWidget {
               width: 200,
               child: ElevatedButton(
                 onPressed: () {
-
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => const TodoScreen(),
+                  ));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orangeAccent,
@@ -80,7 +83,7 @@ class HomeScree extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Fetch Todos',
+                  'Fetch Notes',
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     fontSize: 18,
                     color: Colors.white,
