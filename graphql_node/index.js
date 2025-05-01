@@ -4,6 +4,8 @@ const { expressMiddleware } = require('@apollo/server/express4');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { default: axios } = require('axios');
+const { users } = require('./data/user_data');
+const { notes } = require('./data/notes_data');
 
 async function startServer() {
   const app = express();
@@ -35,19 +37,26 @@ async function startServer() {
     resolvers: {
       // we can write logic for the type Defination as well
       Todo: {
-        user: async (todo) => 
-          (await axios.get(`https://jsonplaceholder.typicode.com/users/${todo.userId}`)).data,
+        // user: async (todo) => 
+        //   (await axios.get(`https://jsonplaceholder.typicode.com/users/${todo.userId}`)).data,
+
+        user: (todo) => users.find(user => user.id == todo.userId),
       },
 
       Query: {
         // You will query the database here [All Logic part here]
-        getTodos: async () => 
-          (await axios.get('https://jsonplaceholder.typicode.com/todos')).data,
-        getAllUsers: async () => 
-          (await axios.get('https://jsonplaceholder.typicode.com/users')).data,
+        // getTodos: async () => 
+        //   (await axios.get('https://jsonplaceholder.typicode.com/todos')).data,
+        // getAllUsers: async () => 
+        //   (await axios.get('https://jsonplaceholder.typicode.com/users')).data,
         
-        getUser: async (parent, {id}) => 
-          (await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)).data,
+        // getUser: async (parent, {id}) => 
+        //   (await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`)).data,
+
+        getTodos: () => notes,
+        getAllUsers: () => users,
+
+        getUser: (parent, {id}) => users.find(user => user.id == id),
       }
     },
   });
