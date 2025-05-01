@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
 import 'package:graphql_flutter/constants.dart';
@@ -13,7 +11,7 @@ class CountryScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<CountryScreen> {
-  final HttpLink httpLink = HttpLink('https://countries.trevorblades.com');
+  final HttpLink httpLink = HttpLink('http://localhost:8000/graphql');
   late GraphQLClient client = GraphQLClient(
       link: httpLink,
       cache: GraphQLCache()
@@ -37,8 +35,8 @@ class _HomeScreenState extends State<CountryScreen> {
   );
 
   final QueryOptions specificContinent = QueryOptions(
-    document: gql(
-      r'''
+      document: gql(
+        r'''
         query getContients($code: code) {
           continent(code: $code) {
             code
@@ -50,10 +48,10 @@ class _HomeScreenState extends State<CountryScreen> {
           },
         }
       ''',
-    ),
-    variables: const {
-      'code': 'AF',
-    }
+      ),
+      variables: const {
+        'code': 'AF',
+      }
   );
 
 
@@ -94,7 +92,6 @@ class _HomeScreenState extends State<CountryScreen> {
               );
             }
 
-            log((snapshot.data?.data).toString(), name: 'response');
             final List<dynamic> dataContinents = snapshot.data?.data?['continents'] ?? [];
             return ListView.builder(
               itemCount: dataContinents.length,
